@@ -61,7 +61,7 @@
             @if(!$student)
                 <form wire:submit.prevent="checkNisn" class="space-y-6">
                     <p class="text-sm text-on-surface-variant leading-relaxed bg-surface-container-highest/40 p-4 rounded-xl border border-outline-variant/20">
-                        Silakan masukkan 10 digit <strong>Nomor Induk Siswa Nasional (NISN)</strong> resmi Anda yang telah terdaftar pada sistem PPDB / daftar ulang sekolah untuk memulai pembaruan dokumen.
+                        Silakan masukkan 10 digit <strong>Nomor Induk Siswa Nasional (NISN)</strong> resmi Anda yang telah terdaftar pada sistem SPMB / daftar ulang sekolah untuk memulai pembaruan dokumen.
                     </p>
 
                     <div>
