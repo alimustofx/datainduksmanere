@@ -147,101 +147,101 @@
     </div>
 
     <div class="pt-4 border-t border-outline-variant/60">
-        <h3 class="text-sm font-bold text-primary tracking-wide uppercase mb-4">Alamat Domisili Ayah Kandung</h3>
-        
-        <div class="space-y-2 mb-6">
-            <label class="block text-sm font-semibold text-on-surface">Alamat Jalan / Dusun <span class="text-rose-600">*</span></label>
-            <input type="text" 
-                   name="ayah_alamat_jalan" 
-                   value="{{ old('ayah_alamat_jalan') }}"
-                   oninput="this.value = toProperCase(this.value)" 
-                   placeholder="Contoh: Jl. Pahlawan No. 42 Blok B" 
-                   class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all"
-                   required>
-        </div>
+            <h3 class="text-sm font-bold text-primary tracking-wide uppercase mb-4">Alamat Domisili Ayah Kandung</h3>
+            
+            <div class="space-y-2 mb-6">
+                <label class="block text-sm font-semibold text-on-surface">Alamat Jalan / Dusun <span class="text-rose-600">*</span></label>
+                <input type="text" 
+                    name="ayah_alamat_jalan" 
+                    value="{{ old('ayah_alamat_jalan') }}"
+                    oninput="this.value = toProperCase(this.value)" 
+                    placeholder="Contoh: Jl. Pahlawan No. 42 Blok B" 
+                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all"
+                    required>
+            </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">RT <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_rt" 
-                       value="{{ old('ayah_rt') }}"
-                       maxlength="3" 
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
-                       onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
-                       placeholder="001" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm text-center font-medium"
-                       required>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">RT <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_rt" 
+                        value="{{ old('ayah_rt') }}"
+                        maxlength="3" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                        onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
+                        placeholder="001" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm text-center font-medium"
+                        required>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">RW <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_rw" 
+                        value="{{ old('ayah_rw') }}"
+                        maxlength="3" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                        onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
+                        placeholder="002" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm text-center font-medium"
+                        required>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">Desa / Kelurahan <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_desa_kelurahan" 
+                        value="{{ old('ayah_desa_kelurahan') }}"
+                        oninput="this.value = toProperCase(this.value)" 
+                        placeholder="Kedok" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
+                        required>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">Kecamatan <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_kecamatan" 
+                        value="{{ old('ayah_kecamatan') }}"
+                        oninput="this.value = toProperCase(this.value)" 
+                        placeholder="Turen" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
+                        required>
+                </div>
             </div>
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">RW <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_rw" 
-                       value="{{ old('ayah_rw') }}"
-                       maxlength="3" 
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
-                       onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
-                       placeholder="002" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm text-center font-medium"
-                       required>
-            </div>
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">Desa / Kelurahan <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_desa_kelurahan" 
-                       value="{{ old('ayah_desa_kelurahan') }}"
-                       oninput="this.value = toProperCase(this.value)" 
-                   placeholder="Kedok" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
-                       required>
-            </div>
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">Kecamatan <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_kecamatan" 
-                       value="{{ old('ayah_kecamatan') }}"
-                       oninput="this.value = toProperCase(this.value)" 
-                       placeholder="Turen" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
-                       required>
-            </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">Kabupaten / Kota <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_kabupaten_kota" 
-                       value="{{ old('ayah_kabupaten_kota') }}"
-                       oninput="this.value = toProperCase(this.value)" 
-                       placeholder="Kabupaten Malang" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
-                       required>
-            </div>
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">Provinsi <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_provinsi" 
-                       value="{{ old('ayah_provinsi') }}"
-                       oninput="this.value = toProperCase(this.value)" 
-                       placeholder="Jawa Timur" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
-                       required>
-            </div>
-            <div class="space-y-2">
-                <label class="block text-sm font-semibold text-on-surface">Kode Pos (5 Digit) <span class="text-rose-600">*</span></label>
-                <input type="text" 
-                       name="ayah_kode_pos" 
-                       value="{{ old('ayah_kode_pos') }}"
-                       maxlength="5" 
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
-                       placeholder="65175" 
-                       class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
-                       required>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">Kabupaten / Kota <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_kabupaten_kota" 
+                        value="{{ old('ayah_kabupaten_kota') }}"
+                        oninput="this.value = toProperCase(this.value)" 
+                        placeholder="Kabupaten Malang" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
+                        required>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">Provinsi <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_provinsi" 
+                        value="{{ old('ayah_provinsi') }}"
+                        oninput="this.value = toProperCase(this.value)" 
+                        placeholder="Jawa Timur" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
+                        required>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-on-surface">Kode Pos (5 Digit) <span class="text-rose-600">*</span></label>
+                    <input type="text" 
+                        name="ayah_kode_pos" 
+                        value="{{ old('ayah_kode_pos') }}"
+                        maxlength="5" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                        placeholder="65175" 
+                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
+                        required>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <script>
     /**

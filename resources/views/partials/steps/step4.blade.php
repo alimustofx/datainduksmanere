@@ -147,13 +147,21 @@
     </div>
 
     <div class="pt-4 border-t border-outline-variant/60">
-        <h3 class="text-sm font-bold text-primary tracking-wide uppercase mb-4">Alamat Domisili Ibu Kandung</h3>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <h3 class="text-sm font-bold text-primary tracking-wide uppercase">Alamat Domisili Ibu Kandung</h3>
+            <button type="button" 
+                    @click="salinAlamatAyah()" 
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/30 rounded-lg text-xs font-bold transition-all active:scale-95 shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                Salin Alamat dari Ayah
+            </button>
+        </div>
         
         <div class="space-y-2 mb-6">
             <label class="block text-sm font-semibold text-on-surface">Alamat Jalan / Dusun <span class="text-rose-600">*</span></label>
             <input type="text" 
                    name="ibu_alamat_jalan" 
-                   value="{{ old('ibu_alamat_jalan') }}"
+                   x-model="alamatJalan"
                    oninput="this.value = toProperCase(this.value)" 
                    placeholder="Contoh: Jl. Raya Kedok No. 15" 
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all"
@@ -165,7 +173,7 @@
                 <label class="block text-sm font-semibold text-on-surface">RT <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_rt" 
-                       value="{{ old('ibu_rt') }}"
+                       x-model="rt"
                        maxlength="3" 
                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
                        onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
@@ -177,7 +185,7 @@
                 <label class="block text-sm font-semibold text-on-surface">RW <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_rw" 
-                       value="{{ old('ibu_rw') }}"
+                       x-model="rw"
                        maxlength="3" 
                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
                        onblur="if(this.value !== '') this.value = this.value.padStart(3, '0')"
@@ -189,7 +197,7 @@
                 <label class="block text-sm font-semibold text-on-surface">Desa / Kelurahan <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_desa_kelurahan" 
-                       value="{{ old('ibu_desa_kelurahan') }}"
+                       x-model="desa"
                        oninput="this.value = toProperCase(this.value)" 
                        placeholder="Kedok" 
                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
@@ -199,7 +207,7 @@
                 <label class="block text-sm font-semibold text-on-surface">Kecamatan <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_kecamatan" 
-                       value="{{ old('ibu_kecamatan') }}"
+                       x-model="kecamatan"
                        oninput="this.value = toProperCase(this.value)" 
                        placeholder="Turen" 
                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
@@ -212,7 +220,7 @@
                 <label class="block text-sm font-semibold text-on-surface">Kabupaten / Kota <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_kabupaten_kota" 
-                       value="{{ old('ibu_kabupaten_kota') }}"
+                       x-model="kabupaten"
                        oninput="this.value = toProperCase(this.value)" 
                        placeholder="Kabupaten Malang" 
                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
@@ -222,7 +230,7 @@
                 <label class="block text-sm font-semibold text-on-surface">Provinsi <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_provinsi" 
-                       value="{{ old('ibu_provinsi') }}"
+                       x-model="provinsi"
                        oninput="this.value = toProperCase(this.value)" 
                        placeholder="Jawa Timur" 
                        class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg text-sm font-medium"
@@ -232,7 +240,7 @@
                 <label class="block text-sm font-semibold text-on-surface">Kode Pos (5 Digit) <span class="text-rose-600">*</span></label>
                 <input type="text" 
                        name="ibu_kode_pos" 
-                       value="{{ old('ibu_kode_pos') }}"
+                       x-model="kodePos"
                        maxlength="5" 
                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
                        placeholder="65175" 
@@ -242,14 +250,51 @@
         </div>
     </div>
 </div>
-
 <script>
     /**
-     * Engine Komponen Data Ibu (Alpine.js) + Sinkronisasi Session Laravel Old
+     * Engine Komponen Data Ibu (Alpine.js) + Sinkronisasi Session Laravel & Copy Alamat Ayah
      */
     function dataIbuInduk() {
         return {
             pekerjaanIbu: '{{ old("ibu_pekerjaan", "") }}',
+            
+            // Inisialisasi model alamat dengan data lama (Old Session) Laravel jika ada
+            alamatJalan: '{{ old("ibu_alamat_jalan", "") }}',
+            rt: '{{ old("ibu_rt", "") }}',
+            rw: '{{ old("ibu_rw", "") }}',
+            desa: '{{ old("ibu_desa_kelurahan", "") }}',
+            kecamatan: '{{ old("ibu_kecamatan", "") }}',
+            kabupaten: '{{ old("ibu_kabupaten_kota", "") }}',
+            provinsi: '{{ old("ibu_provinsi", "") }}',
+            kodePos: '{{ old("ibu_kode_pos", "") }}',
+
+            // Fungsi Inti Penyalin Data Domisili Ayah
+            salinAlamatAyah() {
+                // Ambil element input dari data ayah berdasarkan nama elemen yang pasti
+                const jalanAyah = document.querySelector('input[name="ayah_alamat_jalan"]')?.value || '';
+                const rtAyah    = document.querySelector('input[name="ayah_rt"]')?.value || '';
+                const rwAyah    = document.querySelector('input[name="ayah_rw"]')?.value || '';
+                const desaAyah  = document.querySelector('input[name="ayah_desa_kelurahan"]')?.value || '';
+                const kecAyah   = document.querySelector('input[name="ayah_kecamatan"]')?.value || '';
+                const kabAyah   = document.querySelector('input[name="ayah_kabupaten_kota"]')?.value || '';
+                const provAyah  = document.querySelector('input[name="ayah_provinsi"]')?.value || '';
+                const posAyah   = document.querySelector('input[name="ayah_kode_pos"]')?.value || '';
+
+                if (!jalanAyah && !desaAyah) {
+                    alert('Data Alamat Ayah masih kosong. Silakan isi alamat ayah terlebih dahulu.');
+                    return;
+                }
+
+                // Masukkan data hasil sinkronisasi ke dalam model Alpine data Ibu
+                this.alamatJalan = jalanAyah;
+                this.rt = rtAyah;
+                this.rw = rwAyah;
+                this.desa = desaAyah;
+                this.kecamatan = kecAyah;
+                this.kabupaten = kabAyah;
+                this.provinsi = provAyah;
+                this.kodePos = posAyah;
+            }
         }
     }
 </script>

@@ -173,60 +173,76 @@
     </div>
 
     <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/60 space-y-4">
-        <h3 class="text-sm font-bold text-slate-700 tracking-wide uppercase">Struktur Silsilah Keluarga</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="space-y-1">
-                <label class="text-xs font-semibold text-on-surface-variant">Anak Ke- (Angka) <span class="text-rose-600">*</span></label>
-                <input type="number" min="1" max="50" name="anak_ke" value="{{ old('anak_ke') }}" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm" required>
+            <div class="border-b border-outline-variant/40 pb-2">
+                <h3 class="text-sm font-bold text-slate-700 tracking-wide uppercase">Struktur Silsilah Keluarga</h3>
+                <p class="text-xs text-rose-700 font-medium mt-1 bg-rose-50 border border-rose-100 rounded-lg p-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px] shrink-0">info</span>
+                    <strong>Catatan Penting:</strong> Anda (diri sendiri) tidak ikut dihitung sebagai saudara. Contoh: Jika di dalam KK total ada 4 anak dan Anda anak ke-2, maka jumlah saudara Anda adalah 3.
+                </p>
             </div>
-            <div class="space-y-1">
-                <label class="text-xs font-semibold text-on-surface-variant">Status Keberadaan Keluarga <span class="text-rose-600">*</span></label>
-                <select name="status_keluarga" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm" required>
-                    <option value="Lengkap" {{ old('status_keluarga') == 'Lengkap' ? 'selected' : '' }}>Keluarga Lengkap</option>
-                    <option value="Yatim" {{ old('status_keluarga') == 'Yatim' ? 'selected' : '' }}>Yatim (Ayah Wafat)</option>
-                    <option value="Piatu" {{ old('status_keluarga') == 'Piatu' ? 'selected' : '' }}>Piatu (Ibu Wafat)</option>
-                    <option value="Yatim Piatu" {{ old('status_keluarga') == 'Yatim Piatu' ? 'selected' : '' }}>Yatim Piatu (Keduanya Wafat)</option>
-                </select>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-on-surface-variant">Anak Ke- (Angka) <span class="text-rose-600">*</span></label>
+                    <input type="number" min="1" max="50" name="anak_ke" value="{{ old('anak_ke') }}" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm" required>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-on-surface-variant">Status Keberadaan Keluarga <span class="text-rose-600">*</span></label>
+                    <select name="status_keluarga" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm" required>
+                        <option value="Lengkap" {{ old('status_keluarga') == 'Lengkap' ? 'selected' : '' }}>Keluarga Lengkap</option>
+                        <option value="Yatim" {{ old('status_keluarga') == 'Yatim' ? 'selected' : '' }}>Yatim (Ayah Wafat)</option>
+                        <option value="Piatu" {{ old('status_keluarga') == 'Piatu' ? 'selected' : '' }}>Piatu (Ibu Wafat)</option>
+                        <option value="Yatim Piatu" {{ old('status_keluarga') == 'Yatim Piatu' ? 'selected' : '' }}>Yatim Piatu (Keduanya Wafat)</option>
+                    </select>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs font-slate-500 font-semibold">Total Saudara Anda</label>
+                    <div class="w-full px-3 py-2 bg-slate-200 border border-slate-300 rounded-lg text-sm font-bold text-slate-700 flex justify-between items-center">
+                        <span id="label-total-saudara">0</span>
+                        <span class="text-xs font-medium text-slate-500">(Luar Diri Sendiri)</span>
+                    </div>
+                </div>
             </div>
-            <div class="space-y-1">
-                <label class="text-xs font-slate-500 font-semibold">Total Saudara</label>
-                <div class="w-full px-3 py-2 bg-slate-200 border border-slate-300 rounded-lg text-sm font-bold text-slate-700">
-                    <span id="label-total-saudara">0</span> Saudara
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                <div class="space-y-1">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-on-surface-variant">Jumlah Saudara Kandung</label>
+                        <span class="text-[10px] text-on-surface-variant/70 mb-1">(Satu Ayah & Satu Ibu)</span>
+                    </div>
+                    <input type="number" min="0" id="saudara_kandung" value="{{ old('jumlah_saudara_kandung', '0') }}" 
+                        oninput="hitungSaudaraBiasa()" 
+                        onfocus="if(this.value == '0') this.value = '';" 
+                        onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
+                        name="jumlah_saudara_kandung" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
+                </div>
+                
+                <div class="space-y-1">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-on-surface-variant">Jumlah Saudara Tiri</label>
+                        <span class="text-[10px] text-on-surface-variant/70 mb-1">(Beda Ayah atau Beda Ibu)</span>
+                    </div>
+                    <input type="number" min="0" id="saudara_tiri" value="{{ old('jumlah_saudara_tiri', '0') }}" 
+                        oninput="hitungSaudaraBiasa()" 
+                        onfocus="if(this.value == '0') this.value = '';" 
+                        onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
+                        name="jumlah_saudara_tiri" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
+                </div>
+                
+                <div class="space-y-1">
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-on-surface-variant">Jumlah Saudara Angkat</label>
+                        <span class="text-[10px] text-on-surface-variant/70 mb-1">(Adopsi/Status Hukum)</span>
+                    </div>
+                    <input type="number" min="0" id="saudara_angkat" value="{{ old('jumlah_saudara_angkat', '0') }}" 
+                        oninput="hitungSaudaraBiasa()" 
+                        onfocus="if(this.value == '0') this.value = '';" 
+                        onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
+                        name="jumlah_saudara_angkat" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
                 </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-            <div class="space-y-1">
-                <label class="text-xs font-medium text-on-surface-variant">Jumlah Saudara Kandung</label>
-                <input type="number" min="0" id="saudara_kandung" value="{{ old('jumlah_saudara_kandung', '0') }}" 
-                       oninput="hitungSaudaraBiasa()" 
-                       onfocus="if(this.value == '0') this.value = '';" 
-                       onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
-                       name="jumlah_saudara_kandung" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
-            </div>
-            
-            <div class="space-y-1">
-                <label class="text-xs font-medium text-on-surface-variant">Jumlah Saudara Tiri</label>
-                <input type="number" min="0" id="saudara_tiri" value="{{ old('jumlah_saudara_tiri', '0') }}" 
-                       oninput="hitungSaudaraBiasa()" 
-                       onfocus="if(this.value == '0') this.value = '';" 
-                       onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
-                       name="jumlah_saudara_tiri" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
-            </div>
-            
-            <div class="space-y-1">
-                <label class="text-xs font-medium text-on-surface-variant">Jumlah Saudara Angkat</label>
-                <input type="number" min="0" id="saudara_angkat" value="{{ old('jumlah_saudara_angkat', '0') }}" 
-                       oninput="hitungSaudaraBiasa()" 
-                       onfocus="if(this.value == '0') this.value = '';" 
-                       onblur="if(this.value == '') { this.value = '0'; hitungSaudaraBiasa(); }"
-                       name="jumlah_saudara_angkat" class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg text-sm">
-            </div>
-        </div>
     </div>
-</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

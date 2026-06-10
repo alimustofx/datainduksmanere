@@ -148,7 +148,7 @@
             <div class="max-w-4xl mx-auto text-center relative z-10">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container text-white text-xs font-semibold uppercase tracking-wider mb-5 shadow-sm">
                     <span class="material-symbols-outlined text-[16px] animate-pulse">help</span>
-                    <span>Layanan Helpdesk PPDB</span>
+                    <span>Layanan Helpdesk SPMB</span>
                 </div>
                 <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-4">
                     Ada yang Bisa Kami <span class="text-primary">Bantu?</span>

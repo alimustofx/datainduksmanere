@@ -3,7 +3,7 @@
     <div class="bg-primary/5 border border-primary/20 rounded-xl p-4 flex items-start gap-3">
         <span class="material-symbols-outlined text-primary text-[22px] mt-0.5">cloud_upload</span>
         <div class="text-sm text-on-surface-variant leading-relaxed">
-            <span class="font-bold text-primary">Unggah Berkas Pendukung Fisik:</span> Silakan unggah salinan digital berkas administrasi Anda. Format yang didukung adalah <strong>PDF</strong> dengan kapasitas file maksimal <strong>1 MB</strong> per dokumen.
+            <span class="font-bold text-primary">Unggah Berkas Pendukung Fisik:</span> Silakan unggah salinan digital berkas administrasi Anda. Format yang didukung adalah <strong>PDF</strong> dengan kapasitas file maksimal <strong>500 KB</strong> per dokumen.
         </div>
     </div>
 
