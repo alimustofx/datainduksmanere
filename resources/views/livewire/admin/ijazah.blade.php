@@ -81,7 +81,7 @@
                     </button>
                 </form>
             @else
-            <div class="mb-6 p-4.5 bg-primary-container/20 border border-primary/20 rounded-2xl flex items-center gap-4 shadow-inner">
+                <div class="mb-6 p-4.5 bg-primary-container/20 border border-primary/20 rounded-2xl flex items-center gap-4 shadow-inner">
                     <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
                         <span class="material-symbols-outlined text-[22px]">account_circle</span>
                     </div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <form wire:submit.prevent="saveCertificate" class="space-y-5">
+                <form wire:submit.prevent="saveCertificate" class="space-y-5" enctype="multipart/form-data">
                     <div>
                         <label for="nomor_ijazah" class="block text-sm font-bold text-on-surface mb-2">Nomor Ijazah Kelulusan</label>
                         <div class="relative">
@@ -113,11 +113,31 @@
                         @error('tanggal_ijazah') <span class="text-xs text-error mt-1.5 block font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">error</span>{{ $message }}</span> @enderror
                     </div>
 
+                    <div>
+                        <label for="file_ijazah" class="block text-sm font-bold text-on-surface mb-2">Unggah Scan Ijazah Asli (PDF)</label>
+                        <div class="relative">
+                            <input type="file" id="file_ijazah" wire:model="file_ijazah" accept="application/pdf"
+                                   class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline rounded-xl text-on-surface font-medium text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all shadow-sm file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                            <span class="material-symbols-outlined absolute left-4 top-3.5 text-on-surface-variant/60 text-[22px]">upload_file</span>
+                        </div>
+                        <span class="text-[11px] text-on-surface-variant/70 block mt-1">Ekstensi file harus berupa **PDF** dengan kapasitas file maksimal **2MB**</span>
+                        
+                        <div wire:loading wire:target="file_ijazah" class="text-xs text-primary font-semibold mt-1 flex items-center gap-1.5">
+                            <svg class="animate-spin h-3.5 w-3.5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span>Sedang mengunggah berkas, mohon tunggu...</span>
+                        </div>
+                        
+                        @error('file_ijazah') <span class="text-xs text-error mt-1.5 block font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">error</span>{{ $message }}</span> @enderror
+                    </div>
+
                     <div class="flex gap-4 pt-3">
                         <button type="button" wire:click="cancel" class="flex-1 bg-surface hover:bg-surface-container-high text-on-surface border border-outline rounded-xl text-sm font-bold py-3.5 transition-all active:scale-[0.98]">
                             Batal
                         </button>
-                        <button type="submit" class="flex-1 bg-primary text-on-primary font-bold text-sm py-3.5 rounded-xl hover:bg-primary/90 hover:shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm">
+                        <button type="submit" wire:loading.attr="disabled" class="flex-1 bg-primary text-on-primary font-bold text-sm py-3.5 rounded-xl hover:bg-primary/90 hover:shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 disabled:pointer-events-none">
                             <span class="material-symbols-outlined text-[18px]">save</span>
                             <span>Simpan Perubahan</span>
                         </button>
@@ -127,12 +147,10 @@
         </div>
     </main>
 
-    <!-- FOOTER AREA (PREMIUM EMBEDDED COLOR LOGOS) -->
     <footer class="bg-surface-container-high border-t border-outline-variant mt-auto w-full">
         <div class="w-full px-4 md:px-10 py-12 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
                 
-                <!-- Kolom 1: Profil Singkat -->
                 <div class="col-span-1 md:col-span-4">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-on-primary overflow-hidden">
@@ -145,7 +163,6 @@
                     </p>
                 </div>
                 
-                <!-- Kolom 2: Kontak Fisik & Telepon -->
                 <div class="col-span-1 md:col-span-4">
                     <h4 class="text-base text-on-surface font-bold mb-4">Hubungi Kami</h4>
                     <ul class="space-y-3">
@@ -160,12 +177,10 @@
                     </ul>
                 </div>
                 
-                <!-- Kolom 3: Hanya Logo Media Sosial & Kontak Premium -->
                 <div class="col-span-1 md:col-span-4">
                     <h4 class="text-base text-on-surface font-bold mb-4">Media Sosial & Hubungan</h4>
                     <div class="flex flex-wrap gap-4 mt-2">
                         
-                        <!-- Logo Website Resmi (Ikon Global Biru Sekolah) -->
                         <a href="https://smanegeri1turen.sch.id" 
                            target="_blank" 
                            rel="noopener noreferrer" 
@@ -176,7 +191,6 @@
                             </svg>
                         </a>
 
-                        <!-- Logo WhatsApp (Hijau Resmi Flaticon Style) -->
                         <a href="https://wa.me/6282131067682"  
                            target="_blank" 
                            rel="noopener noreferrer" 
@@ -187,7 +201,6 @@
                             </svg>
                         </a>
 
-                        <!-- Logo Instagram (Warna Gradasi Estetis) -->
                         <a href="https://instagram.com/sman1turen" 
                            target="_blank" 
                            rel="noopener noreferrer" 
@@ -206,7 +219,6 @@
                             </svg>
                         </a>
 
-                        <!-- Logo E-mail (Merah Pos / Surat Elektronik) -->
                         <a href="mailto:admin@smanegeri1turen.sch.id" 
                            title="Kirim Surat Elektronik"
                            class="w-11 h-11 bg-white border border-outline-variant/60 rounded-xl flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-md hover:scale-110 active:scale-95">
@@ -220,7 +232,6 @@
                 
             </div>
             
-            <!-- Hak Cipta -->
             <div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-sm text-on-surface-variant text-center md:text-left">
                     © 2026 SMAN 1 Turen. Hak Cipta Dilindungi.

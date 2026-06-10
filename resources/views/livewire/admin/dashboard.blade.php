@@ -464,8 +464,10 @@
 
                     </div>
 
+                <!-- PANEL KANAN: PRATINJAU DOKUMEN (w-1/2) -->
                 <div class="w-1/2 flex flex-col bg-slate-100 overflow-hidden">
                                         
+                    <!-- Navigasi Tab -->
                     <div class="p-2.5 bg-slate-200/80 border-b border-slate-300 flex items-center gap-1">
                         <button @click="activeFileTab = 'kk'" :class="activeFileTab === 'kk' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
                             <span class="material-symbols-outlined text-[14px]">table_rows</span> Kartu Keluarga
@@ -479,8 +481,12 @@
                         <button @click="activeFileTab = 'pernyataan'" :class="activeFileTab === 'pernyataan' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
                             <span class="material-symbols-outlined text-[14px]">assignment_turned_in</span> Surat Pernyataan
                         </button>
+                        <button @click="activeFileTab = 'ijazah'" :class="activeFileTab === 'ijazah' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">school</span> Ijazah
+                        </button>
                     </div>
 
+                    <!-- Wadah Render File iFrame -->
                     <div class="flex-1 p-4 flex flex-col justify-center items-center relative overflow-hidden h-full">
 
                         <!-- TAB 1: KARTU KELUARGA -->
@@ -535,26 +541,43 @@
                             @endif
                         </div>
 
-                    </div>
-                </div>
+                        <!-- TAB 5: IJAZAH ASLI -->
+                        <div class="w-full h-full" x-show="activeFileTab === 'ijazah'" x-cloak>
+                            @if($selectedStudent->file_ijazah)
+                                <div class="bg-white px-3 py-1.5 border border-slate-200 text-[10px] text-slate-500 rounded-t-lg truncate font-mono flex justify-between items-center">
+                                    <span>Nama Berkas: {{ $selectedStudent->file_ijazah }}</span>
+                                    <span class="text-emerald-600 font-bold flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">lock</span> Terproteksi</span>
+                                </div>
+                                <iframe src="{{ route('admin.download.berkas', ['id' => $selectedStudent->id, 'jenis_berkas' => 'file_ijazah']) }}" class="w-full h-[92%] bg-white rounded-b-lg shadow-inner border border-slate-200"></iframe>
+                            @else
+                                <div class="text-center text-slate-400 py-12">
+                                    <span class="material-symbols-outlined block text-3xl mb-1">warning</span> 
+                                    Ijazah Belum Diperbarui / Tidak Tersedia
+                                </div>
+                            @endif
+                        </div>
 
-                </div>
+                    </div> <!-- Tutup Wadah Render File (flex-1) -->
+                </div> <!-- Tutup Panel Kanan (w-1/2) -->
 
-                <div class="p-4 border-t border-slate-200 flex justify-between items-center bg-slate-50">
-                    <div class="text-xs text-slate-500 font-medium">
-                        Periksa kembali kesesuaian berkas digital pendaftar sebelum menyelesaikan peninjauan.
-                    </div>
-                    <div class="flex gap-2">
-                        <button wire:click="toggleVerifikasi({{ $selectedStudent->id }})" class="py-2 px-5 rounded-xl font-bold text-xs transition-all border shadow-sm {{ $selectedStudent->status_verifikasi === 'Proses' ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100' }}">
-                            {{ $selectedStudent->status_verifikasi === 'Proses' ? 'Setujui Validasi' : 'Kembalikan ke Proses' }}
-                        </button>
-                        <button wire:click="closeModal" class="bg-slate-800 text-white font-bold py-2 px-5 rounded-xl hover:bg-slate-900 text-xs transition-colors">
-                            Tutup Detail
-                        </button>
-                    </div>
-                </div>
+            </div> <!-- Tutup Kontainer Tengah Flexrow Modal Body (Jika ada) -->
 
+            <!-- FOOTER BAWAH: LUAS HORIZONTAL PENUH -->
+            <div class="p-4 border-t border-slate-200 flex justify-between items-center bg-slate-50 w-full">
+                <div class="text-xs text-slate-500 font-medium">
+                    Periksa kembali kesesuaian berkas digital pendaftar sebelum menyelesaikan peninjauan.
+                </div>
+                <div class="flex gap-2">
+                    <button wire:click="toggleVerifikasi({{ $selectedStudent->id }})" class="py-2 px-5 rounded-xl font-bold text-xs transition-all border shadow-sm {{ $selectedStudent->status_verifikasi === 'Proses' ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100' }}">
+                        {{ $selectedStudent->status_verifikasi === 'Proses' ? 'Setujui Validasi' : 'Kembalikan ke Proses' }}
+                    </button>
+                    <button wire:click="closeModal" class="bg-slate-800 text-white font-bold py-2 px-5 rounded-xl hover:bg-slate-900 text-xs transition-colors">
+                        Tutup Detail
+                    </button>
+                </div>
             </div>
-        </div>
+
+        </div> <!-- Tutup Dialog Modal Card -->
+    </div> <!-- Tutup Background Overlay Backdrop -->
     @endif
 </div>

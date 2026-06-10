@@ -179,8 +179,8 @@ class StudentController extends Controller
      */
     public function downloadPrivateFile($id, $jenis_berkas)
     {
-        // 1. Validasi jenis berkas yang diminta untuk menghindari serangan manipulasi string path traversal
-        $berkasValid = ['file_kartu_keluarga', 'file_skl', 'file_bukti_spmb', 'file_surat_pernyataan'];
+        // 1. MODIFIKASI: Menambahkan 'file_ijazah' ke dalam whitelist pengecekan agar diizinkan diakses admin
+        $berkasValid = ['file_kartu_keluarga', 'file_skl', 'file_bukti_spmb', 'file_surat_pernyataan', 'file_ijazah'];
         if (!in_array($jenis_berkas, $berkasValid)) {
             abort(403, 'Akses jenis berkas tidak diizinkan.');
         }
@@ -191,7 +191,7 @@ class StudentController extends Controller
         // 3. Ambil string nama file dari database sesuai kolom berkas terkait
         $namaFile = $student->$jenis_berkas;
 
-        // Jika data di kolom database kosong/siswa tidak mengunggah berkas tersebut
+        // Jika data di kolom database kosong/siswa tidak atau belum mengunggah berkas tersebut
         if (!$namaFile) {
             abort(404, 'Siswa belum mengunggah berkas ini.');
         }
@@ -204,7 +204,7 @@ class StudentController extends Controller
             abort(404, 'File dokumen fisik tidak ditemukan di server.');
         }
 
-        // 6. FIXED: Mengubah dari Storage::download ke response()->file() agar file dirender langsung (Inline Preview) oleh browser
+        // 6. FIXED: response()->file() agar file dirender langsung (Inline Preview) oleh browser
         // Menggunakan storage_path untuk mengambil full path sistem operasi Ubuntu Anda
         return response()->file(storage_path('app/private/' . $pathLengkap), [
             'Content-Type' => 'application/pdf',
