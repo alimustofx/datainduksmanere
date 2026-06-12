@@ -48,6 +48,23 @@
         </div>
     </div>
 
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6">
+        <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-emerald-600 text-[24px] mt-0.5">forum</span>
+            <div class="text-sm text-slate-700 leading-relaxed">
+                <span class="font-bold text-emerald-700 block mb-0.5">Official Group - Murid Baru 2026/2027</span>
+                Sebelum melanjutkan proses, harap bergabung grup terlebih dahulu untuk mendapatkan informasi resmi, panduan bimbingan, atau mengajukan pertanyaan seputar proses daftar ulang.
+            </div>
+        </div>
+        <a href="https://chat.whatsapp.com/GYOxeSTudmgDGu1CD6zTEn?mode=gi_t" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-lg shadow-sm transition-all whitespace-nowrap self-start sm:self-center">
+            <span class="material-symbols-outlined text-[16px]">chat</span>
+            Gabung Grup WA
+        </a>
+    </div>
+
     <div class="mt-8 p-4 bg-slate-50 border border-slate-200 rounded-xl">
         <label class="flex items-start gap-3 cursor-pointer select-none">
             <input type="checkbox" 
