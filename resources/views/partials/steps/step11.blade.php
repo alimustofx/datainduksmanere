@@ -56,7 +56,7 @@
                 <p class="text-xs text-on-surface-variant">Lembar dokumen akta kelahiran yang telah distempel.</p>
             </div>
             <input type="file" 
-                   name="file_akta_kelahiran" 
+                   name="file_surat_pernyataan" 
                    accept=".pdf, .jpg, .jpeg, .png"
                    class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                    required>

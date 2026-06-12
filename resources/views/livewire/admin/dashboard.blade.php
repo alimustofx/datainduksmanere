@@ -227,10 +227,19 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4.5">
-                                        <button wire:click="toggleVerifikasi({{ $student->id }})" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all border shadow-sm {{ $student->status_verifikasi === 'Proses' ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 shadow-blue-100' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50' }}">
-                                            <span class="material-symbols-outlined text-[14px]">published_with_changes</span>
-                                            {{ $student->status_verifikasi === 'Proses' ? 'Setujui Validasi' : 'Kembalikan ke Proses' }}
-                                        </button>
+                                        <div class="flex items-center gap-2">
+                                            <button wire:click="toggleVerifikasi({{ $student->id }})" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all border shadow-sm {{ $student->status_verifikasi === 'Proses' ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 shadow-blue-100' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50' }}">
+                                                <span class="material-symbols-outlined text-[14px]">published_with_changes</span>
+                                                {{ $student->status_verifikasi === 'Proses' ? 'Setujui Validasi' : 'Kembalikan ke Proses' }}
+                                            </button>
+
+                                            <button wire:click="deleteStudent({{ $student->id }})" 
+                                                    wire:confirm="PERINGATAN: Apakah Anda yakin ingin menghapus data pendaftar {{ $student->nama_lengkap }}? Seluruh berkas PDF fisik juga akan dihapus permanen dari server!"
+                                                    class="inline-flex items-center justify-center p-1.5 rounded-xl bg-rose-5 text-rose-600 border border-rose-200 hover:bg-rose-100 hover:text-rose-700 transition-all shadow-sm"
+                                                    title="Hapus Data Penyusup">
+                                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                                            </button>
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4.5 text-center">
                                         <button wire:click="showDetail({{ $student->id }})" class="text-blue-600 bg-blue-50 hover:bg-blue-100 p-2 rounded-xl transition-all inline-flex items-center" title="Buka Data & Berkas">
@@ -476,10 +485,10 @@
                             <span class="material-symbols-outlined text-[14px]">description</span> SKL
                         </button>
                         <button @click="activeFileTab = 'spmb'" :class="activeFileTab === 'spmb' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">confirmation_number</span> Bukti SPMB
+                            <span class="material-symbols-outlined text-[14px]">confirmation_number</span> Bukti
                         </button>
                         <button @click="activeFileTab = 'pernyataan'" :class="activeFileTab === 'pernyataan' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">assignment_turned_in</span> Surat Pernyataan
+                            <span class="material-symbols-outlined text-[14px]">assignment_turned_in</span> Akta Kelahiran
                         </button>
                         <button @click="activeFileTab = 'ijazah'" :class="activeFileTab === 'ijazah' ? 'bg-blue-600 text-white font-bold' : 'bg-white hover:bg-slate-50 text-slate-700 font-medium'" class="flex-1 py-2 px-3 text-center rounded-xl text-[11px] shadow-sm transition-all flex items-center justify-center gap-1">
                             <span class="material-symbols-outlined text-[14px]">school</span> Ijazah

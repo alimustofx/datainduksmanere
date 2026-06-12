@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class Dashboard extends Component
 {
@@ -68,6 +69,35 @@ class Dashboard extends Component
     {
         $this->showModal = false;
         $this->selectedStudent = null;
+    }
+
+    public function deleteStudent($id)
+    {
+        $student = Student::find($id);
+
+        if ($student) {
+            // Himpunan berkas pendaftaran yang dimiliki siswa
+            $berkasList = [
+                $student->file_kartu_keluarga,
+                $student->file_skl,
+                $student->file_bukti_spmb,
+                $student->file_surat_pernyataan,
+                $student->file_ijazah // Termasuk ijazah baru yang kita tambahkan kemarin
+            ];
+
+            // Looping penghapusan file dari disk lokal/server private storage
+            foreach ($berkasList as $namaFile) {
+                if ($namaFile && Storage::exists('berkas_pendaftaran/' . $namaFile)) {
+                    Storage::delete('berkas_pendaftaran/' . $namaFile);
+                }
+            }
+
+            // Hapus data baris record siswa dari database
+            $student->delete();
+
+            // Memunculkan pesan sukses di dashboard
+            session()->flash('message', 'Data pendaftar ilegal/penyusup berhasil dibersihkan permanen.');
+        }
     }
 
     public function exportExcel()
