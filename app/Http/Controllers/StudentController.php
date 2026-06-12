@@ -100,14 +100,14 @@ class StudentController extends Controller
             'file_kartu_keluarga.mimes' => 'Berkas Kartu Keluarga harus berformat PDF.',
             'file_skl.required' => 'Berkas SKL wajib diunggah.',
             'file_skl.mimes' => 'Berkas SKL harus berformat PDF.',
-            'file_bukti_spmb.required' => 'Berkas Bukti SPMB wajib diunggah.',
-            'file_bukti_spmb.mimes' => 'Berkas Bukti SPMB harus berformat PDF.',
-            'file_surat_pernyataan.required' => 'Berkas Surat Pernyataan wajib diunggah.',
-            'file_surat_pernyataan.mimes' => 'Berkas Surat Pernyataan harus berformat PDF.',
-            'file_kartu_keluarga.max' => 'Ukuran maksimal berkas adalah 2MB.',
-            'file_skl.max' => 'Ukuran maksimal berkas adalah 2MB.',
-            'file_bukti_spmb.max' => 'Ukuran maksimal berkas adalah 2MB.',
-            'file_surat_pernyataan.max' => 'Ukuran maksimal berkas adalah 2MB.',
+            'file_bukti_spmb.required' => 'Berkas Bukti penerimaan wajib diunggah.',
+            'file_bukti_spmb.mimes' => 'Berkas Bukti penerimaan harus berformat PDF.',
+            'file_surat_pernyataan.required' => 'Berkas Akta Kelahiran wajib diunggah.',
+            'file_surat_pernyataan.mimes' => 'Berkas Akta Kelahiran harus berformat PDF.',
+            'file_kartu_keluarga.max' => 'Ukuran maksimal berkas adalah 500kb.',
+            'file_skl.max' => 'Ukuran maksimal berkas adalah 500kb.',
+            'file_bukti_spmb.max' => 'Ukuran maksimal berkas adalah 500kb.',
+            'file_surat_pernyataan.max' => 'Ukuran maksimal berkas adalah 500kb.',
         ];
 
         // Buat objek validator manual

@@ -26,7 +26,7 @@
         <!-- File 2: SKL (Surat Keterangan Lulus) -->
         <div class="bg-surface border border-outline-variant rounded-xl p-5 space-y-3 flex flex-col justify-between">
             <div class="space-y-1">
-                <label class="block text-sm font-bold text-on-surface">File SKL / Ijazah SMP <span class="text-rose-600">*</span></label>
+                <label class="block text-sm font-bold text-on-surface">File SKL SMP/MTs <span class="text-rose-600">*</span></label>
                 <p class="text-xs text-on-surface-variant">Surat keterangan kelulusan resmi bermaterai/dicap dari sekolah asal.</p>
             </div>
             <input type="file" 
@@ -39,8 +39,8 @@
         <!-- File 3: Bukti SPMB -->
         <div class="bg-surface border border-outline-variant rounded-xl p-5 space-y-3 flex flex-col justify-between">
             <div class="space-y-1">
-                <label class="block text-sm font-bold text-on-surface">File Bukti Pendaftaran SPMB <span class="text-rose-600">*</span></label>
-                <p class="text-xs text-on-surface-variant">Bukti cetak kartu ujian atau formulir seleksi sistem masuk.</p>
+                <label class="block text-sm font-bold text-on-surface">File Bukti Penerimaan <span class="text-rose-600">*</span></label>
+                <p class="text-xs text-on-surface-variant">Scan atau foto bukti cetak penerimaan di tahapan SPMB.</p>
             </div>
             <input type="file" 
                    name="file_bukti_spmb" 
@@ -52,11 +52,11 @@
         <!-- File 4: Surat Pernyataan -->
         <div class="bg-surface border border-outline-variant rounded-xl p-5 space-y-3 flex flex-col justify-between">
             <div class="space-y-1">
-                <label class="block text-sm font-bold text-on-surface">File Surat Pernyataan Siswa/Wali <span class="text-rose-600">*</span></label>
-                <p class="text-xs text-on-surface-variant">Lembar dokumen pernyataan mentaati tata tertib sekolah yang ditandatangani.</p>
+                <label class="block text-sm font-bold text-on-surface">Akta Kelahiran <span class="text-rose-600">*</span></label>
+                <p class="text-xs text-on-surface-variant">Lembar dokumen akta kelahiran yang telah distempel.</p>
             </div>
             <input type="file" 
-                   name="file_surat_pernyataan" 
+                   name="file_akta_kelahiran" 
                    accept=".pdf, .jpg, .jpeg, .png"
                    class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                    required>
