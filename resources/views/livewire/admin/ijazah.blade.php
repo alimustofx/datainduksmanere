@@ -1,6 +1,15 @@
+<!-- PERBAIKAN: Menambahkan core engine Alpine.js agar fungsi klik hamburger menu aktif -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<style>
+    /* Mencegah kilatan komponen menu Alpine saat halaman pertama kali dimuat */
+    [x-cloak] { display: none !important; }
+</style>
+
 <div class="bg-background text-on-background flex flex-col min-h-screen font-sans">
     
-    <nav class="bg-surface-container-lowest border-b border-outline-variant shadow-sm w-full z-50 top-0 sticky">
+    <!-- PERBAIKAN: Mengikat navigasi ke state Alpine.js -->
+    <nav x-data="{ openMobileMenu: false }" class="bg-surface-container-lowest border-b border-outline-variant shadow-sm w-full z-50 top-0 sticky">
         <div class="flex justify-between items-center w-full px-4 md:px-10 max-w-7xl mx-auto h-20">
             <div class="flex items-center gap-3 shrink-0">
                 <div class="w-11 h-11 flex items-center justify-center overflow-hidden">
@@ -30,6 +39,33 @@
                     Login Admin
                 </a>
             </div>
+
+            <!-- PERBAIKAN: Tombol Hamburger Menu (Hanya muncul di Layar Mobile) -->
+            <button @click="openMobileMenu = !openMobileMenu" class="md:hidden text-on-surface-variant cursor-pointer p-2 rounded-lg hover:bg-surface-container flex items-center justify-center">
+                <span class="material-symbols-outlined" x-text="openMobileMenu ? 'close' : 'menu'">menu</span>
+            </button>
+        </div>
+
+        <!-- PERBAIKAN: Kontainer Menu Navigasi Mobile (Drop-down) -->
+        <div x-show="openMobileMenu" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="md:hidden bg-surface-container-lowest border-t border-outline-variant px-4 py-4 space-y-3 shadow-inner">
+            <a href="{{ url('/') }}" class="block px-3 py-2 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-slate-50">Beranda</a>
+            <a href="{{ url('/verifikasi') }}" class="block px-3 py-2 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-slate-50">Daftar Ulang</a>
+            <!-- Tab Aktif Untuk Halaman Ini -->
+            <a href="{{ url('/verifikasi-ijazah') }}" class="block px-3 py-2 rounded-xl text-sm font-bold text-primary bg-primary-container/20">Verifikasi Ijazah</a>
+            <a href="{{ url('/bantuan') }}" class="block px-3 py-2 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-slate-50">Bantuan</a>
+            <hr class="border-outline-variant/60 my-2">
+            <a href="/login" class="w-full text-center bg-surface text-primary border border-outline-variant text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-surface-container transition-colors flex items-center justify-center gap-2 shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">login</span>
+                Login Admin
+            </a>
         </div>
     </nav>
 
