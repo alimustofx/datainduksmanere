@@ -104,12 +104,12 @@
                    required>
         </div>
         <div class="space-y-2">
-            <label class="block text-sm font-semibold text-on-surface">No. Registrasi Akta Kelahiran <span class="text-rose-600">*</span></label>
+            <label class="block text-sm font-semibold text-on-surface">No Akta Kelahiran <span class="text-rose-600">*</span></label>
             <input type="text" 
                    name="no_akta_kelahiran" 
                    value="{{ old('no_akta_kelahiran') }}"
                    oninput="this.value = this.value.toUpperCase()" 
-                   placeholder="Contoh: AL.XXXX" 
+                   placeholder="Contoh: 3507-LU-XXXXXXXX" 
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all" 
                    required>
         </div>
