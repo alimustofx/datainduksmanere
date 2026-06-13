@@ -56,7 +56,7 @@
                 Sebelum melanjutkan proses, harap bergabung grup terlebih dahulu untuk mendapatkan informasi resmi, panduan bimbingan, atau mengajukan pertanyaan seputar proses daftar ulang.
             </div>
         </div>
-        <a href="https://chat.whatsapp.com/GYOxeSTudmgDGu1CD6zTEn?mode=gi_t" 
+        <a href="https://chat.whatsapp.com/L60KiFhdk3t96AkZyVa27k?mode=gi_t" 
            target="_blank" 
            rel="noopener noreferrer" 
            class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-lg shadow-sm transition-all whitespace-nowrap self-start sm:self-center">
