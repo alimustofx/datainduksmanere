@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         <div class="space-y-2">
             <label class="block text-sm font-semibold text-on-surface">NIK (No. Induk Kependudukan) <span class="text-rose-600">*</span></label>
             <input type="text" 
@@ -91,7 +91,11 @@
                    placeholder="16 Digit Nomor KTP/KK" 
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all" 
                    required>
+            <p class="text-[11px] text-on-surface-variant/70 leading-relaxed mt-1">
+                Pastikan memasukkan 16 digit NIK <span class="font-bold text-on-surface">Calon Siswa</span> yang tertera di lembar Kartu Keluarga, bukan NIK Orang Tua/Wali.
+            </p>
         </div>
+
         <div class="space-y-2">
             <label class="block text-sm font-semibold text-on-surface">Nomor Kartu Keluarga (KK) <span class="text-rose-600">*</span></label>
             <input type="text" 
@@ -102,7 +106,11 @@
                    placeholder="16 Digit Nomor KK" 
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all" 
                    required>
+            <p class="text-[11px] text-on-surface-variant/70 leading-relaxed mt-1">
+                Masukkan 16 digit Nomor KK yang terletak di bagian <span class="font-bold text-on-surface">Paling Atas</span> dokumen Kartu Keluarga (berwarna hitam besar).
+            </p>
         </div>
+
         <div class="space-y-2">
             <label class="block text-sm font-semibold text-on-surface">No Akta Kelahiran <span class="text-rose-600">*</span></label>
             <input type="text" 
@@ -113,7 +121,7 @@
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all" 
                    required>
             <p class="text-[11px] text-on-surface-variant/70 leading-relaxed mt-1">
-                <span class="text-amber-600 font-bold">PENTING:</span> Mohon masukkan nomor yang tertera setelah kalimat <span class="font-bold text-on-surface">"Berdasarkan Akta Kelahiran Nomor..."</span>. <strong>Bukan</strong> nomor registrasi/nomor seri yang berada di pojok kanan atas lembar akta.
+                <span class="text-amber-600 font-bold">PENTING:</span> Masukkan nomor setelah kalimat <span class="font-bold text-on-surface">"Berdasarkan Akta Kelahiran Nomor..."</span>. Bukan nomor registrasi di pojok kanan atas.
             </p>
         </div>
     </div>
