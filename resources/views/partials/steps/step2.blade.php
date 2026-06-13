@@ -112,6 +112,9 @@
                    placeholder="Contoh: 3507-LU-XXXXXXXX" 
                    class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary text-sm font-medium transition-all" 
                    required>
+            <p class="text-[11px] text-on-surface-variant/70 leading-relaxed mt-1">
+                <span class="text-amber-600 font-bold">PENTING:</span> Mohon masukkan nomor yang tertera setelah kalimat <span class="font-bold text-on-surface">"Berdasarkan Akta Kelahiran Nomor..."</span>. <strong>Bukan</strong> nomor registrasi/nomor seri yang berada di pojok kanan atas lembar akta.
+            </p>
         </div>
     </div>
 
